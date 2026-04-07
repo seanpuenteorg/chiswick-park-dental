@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "chiswick-dental",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8765", "-d", "/Users/seanpuente/Downloads/chiswick-park-dental-site"],
+      "port": 8765
+    }
+  ]
+}
