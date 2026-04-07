@@ -213,6 +213,18 @@ body {
     box-shadow: 0 4px 15px rgba(119, 88, 101, 0.35);
 }
 
+/* Filled secondary button (CubeDental: both nav buttons filled) */
+.btn-secondary {
+    background: #6e4a52;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5d3d46;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(110, 74, 82, 0.35);
+}
+
 .btn-outline {
     background: transparent;
     color: var(--brand-primary);
