@@ -27,7 +27,7 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
-            background: linear-gradient(135deg, #3D2832 0%, #775865 50%, #3D2832 100%);
+            background: #1a1a1a;
         }
 
         .hero-video iframe {
@@ -40,16 +40,17 @@
             border: 0;
         }
 
+        /* Neutral dark overlay — no color tint */
         .hero-overlay {
             position: absolute;
             inset: 0;
             z-index: 1;
             background:
                 linear-gradient(135deg,
-                    rgba(61, 40, 50, 0.82) 0%,
-                    rgba(119, 88, 101, 0.55) 40%,
-                    rgba(61, 40, 50, 0.50) 70%,
-                    rgba(61, 40, 50, 0.75) 100%
+                    rgba(20, 20, 20, 0.75) 0%,
+                    rgba(30, 30, 30, 0.50) 40%,
+                    rgba(20, 20, 20, 0.45) 70%,
+                    rgba(20, 20, 20, 0.70) 100%
                 );
         }
 
@@ -62,81 +63,116 @@
             width: 100%;
         }
 
-        /* CubeDental: 66px, line-height 70px, weight 400, bold=800 */
         .hero h1 {
             font-family: var(--font-body);
             font-size: clamp(36px, 5vw, 66px);
             font-weight: 400;
             line-height: 1.06;
-            color: rgba(255, 255, 255, 0.78);
+            color: #FFFFFF;
             max-width: 600px;
             margin-bottom: 40px;
         }
 
         .hero h1 strong {
-            color: #FFFFFF;
+            color: #775865;
             font-weight: 700;
         }
 
         .btn-hero {
-            background: var(--brand-primary);
-            color: white;
+            background: #FFFFFF;
+            color: var(--brand-dark);
             border: none;
             border-radius: 10px;
-            padding: 0 30px;
+            padding: 0 36px;
             height: 60px;
             font-size: 18px;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         .btn-hero:hover {
-            background: #6e4a52;
+            background: #f0f0f0;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(119, 88, 101, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
         }
 
-        .quick-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 40px 40px 20px;
+        /* ── TREATMENT CAROUSEL ── */
+        .treatment-carousel {
+            background: var(--brand-white);
+            padding: 50px 40px 40px;
             position: relative;
             z-index: 1;
-            background: var(--brand-white);
         }
 
-        .quick-link {
+        .carousel-track {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 10px;
+        }
+
+        .carousel-track::-webkit-scrollbar { display: none; }
+
+        .carousel-card {
+            flex: 0 0 220px;
+            scroll-snap-align: start;
+            background: var(--brand-light);
+            border-radius: 10px;
+            padding: 28px 24px;
+            text-align: center;
             text-decoration: none;
-            transition: transform 0.25s;
+            transition: all 0.25s;
+            cursor: pointer;
         }
 
-        .quick-link:hover { transform: translateY(-4px); }
-
-        .quick-link-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .carousel-card:hover {
+            background: var(--brand-primary);
             color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(119, 88, 101, 0.2);
         }
 
-        .quick-link-circle.teal { background: #775865; }
-        .quick-link-circle.blue { background: #6e4a52; }
+        .carousel-card:hover .carousel-card-title,
+        .carousel-card:hover .carousel-card-desc {
+            color: white;
+        }
 
-        .quick-link-label {
+        .carousel-card:hover .carousel-card-icon {
+            color: white;
+        }
+
+        .carousel-card-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: var(--brand-primary);
+            transition: color 0.25s;
+        }
+
+        .carousel-card-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .carousel-card-title {
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 6px;
+            transition: color 0.25s;
+        }
+
+        .carousel-card-desc {
             font-family: var(--font-body);
             font-size: 13px;
-            font-weight: 500;
-            color: var(--brand-text);
-            text-align: center;
-            line-height: 1.3;
+            font-weight: 400;
+            color: var(--brand-muted);
+            line-height: 1.5;
+            transition: color 0.25s;
         }
 
         .tagline {
@@ -147,7 +183,6 @@
             background: var(--brand-white);
         }
 
-        /* CubeDental: 24px, weight 400, line-height 1.6 */
         .tagline p {
             font-family: var(--font-body);
             font-size: clamp(18px, 2.5vw, 24px);
@@ -161,8 +196,8 @@
         @media (max-width: 768px) {
             .hero-content { padding: 120px 24px 40px; }
             .hero h1 { font-size: 36px; }
-            .quick-links { padding: 0 24px 20px; margin-top: -20px; }
-            .quick-link-circle { width: 70px; height: 70px; }
+            .treatment-carousel { padding: 30px 16px 30px; }
+            .carousel-card { flex: 0 0 180px; padding: 20px 16px; }
             .tagline { padding: 30px 24px 100px; }
         }
 
@@ -213,27 +248,58 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Your Trusted Choice<br>for <strong>Quality Dental<br>Care</strong> in Chiswick</h1>
-            <a href="/treatments.html" class="btn btn-hero">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
-                Our Treatments
+            <a href="https://cal.com/sean-puente-kfnbtg/free-invisalign-evaluation" class="btn btn-hero" target="_blank">
+                Book Now
             </a>
         </div>
     </section>
 
-    <!-- ── QUICK LINKS ── -->
-    <div class="quick-links">
-        <a href="https://maps.google.com/?q=62+South+Parade+Chiswick+W4+5LG" class="quick-link" target="_blank" rel="noopener">
-            <div class="quick-link-circle teal">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:28px;height:28px"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0 1 15 0Z" /></svg>
-            </div>
-            <span class="quick-link-label">How to<br>Find Us</span>
-        </a>
-        <a href="/nhs-info.html" class="quick-link">
-            <div class="quick-link-circle blue">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:28px;height:28px"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg>
-            </div>
-            <span class="quick-link-label">NHS<br>Info</span>
-        </a>
+    <!-- ── TREATMENT CAROUSEL ── -->
+    <div class="treatment-carousel">
+        <div class="carousel-track">
+            <a href="/treatments.html" class="carousel-card">
+                <div class="carousel-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>
+                </div>
+                <div class="carousel-card-title">Invisalign</div>
+                <div class="carousel-card-desc">Platinum Elite Provider. Clear aligners for a straighter smile.</div>
+            </a>
+            <a href="/treatments.html" class="carousel-card">
+                <div class="carousel-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" /></svg>
+                </div>
+                <div class="carousel-card-title">Cosmetic Dentistry</div>
+                <div class="carousel-card-desc">Veneers, bonding & smile makeovers.</div>
+            </a>
+            <a href="/treatments.html" class="carousel-card">
+                <div class="carousel-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" /></svg>
+                </div>
+                <div class="carousel-card-title">Dental Implants</div>
+                <div class="carousel-card-desc">Permanent tooth replacement by our specialist surgeon.</div>
+            </a>
+            <a href="/treatments.html" class="carousel-card">
+                <div class="carousel-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+                </div>
+                <div class="carousel-card-title">Facial Aesthetics</div>
+                <div class="carousel-card-desc">Profhilo, fillers & anti-wrinkle treatments.</div>
+            </a>
+            <a href="/treatments.html" class="carousel-card">
+                <div class="carousel-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" /></svg>
+                </div>
+                <div class="carousel-card-title">Teeth Whitening</div>
+                <div class="carousel-card-desc">Professional whitening for a brighter smile.</div>
+            </a>
+            <a href="/treatments.html" class="carousel-card">
+                <div class="carousel-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                </div>
+                <div class="carousel-card-title">General Dentistry</div>
+                <div class="carousel-card-desc">Check-ups, fillings, crowns & preventive care.</div>
+            </a>
+        </div>
     </div>
 
     <!-- ── TAGLINE ── -->
