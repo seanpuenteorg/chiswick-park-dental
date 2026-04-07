@@ -30,28 +30,46 @@
             background: #1a1a1a;
         }
 
-        .hero-video iframe {
+        .hero-video video {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 180%;
-            height: 180%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
             transform: translate(-50%, -50%);
-            border: 0;
+            object-fit: cover;
         }
 
-        /* Neutral dark overlay — no color tint */
+        /* Neutral dark overlay */
         .hero-overlay {
             position: absolute;
             inset: 0;
             z-index: 1;
             background:
                 linear-gradient(135deg,
-                    rgba(20, 20, 20, 0.75) 0%,
-                    rgba(30, 30, 30, 0.50) 40%,
-                    rgba(20, 20, 20, 0.45) 70%,
-                    rgba(20, 20, 20, 0.70) 100%
+                    rgba(20, 20, 20, 0.65) 0%,
+                    rgba(30, 30, 30, 0.40) 40%,
+                    rgba(20, 20, 20, 0.35) 70%,
+                    rgba(20, 20, 20, 0.55) 100%
                 );
+        }
+
+        /* CubeDental-style curve at bottom of hero */
+        .hero-curve {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            line-height: 0;
+        }
+
+        .hero-curve svg {
+            display: block;
+            width: 100%;
+            height: 80px;
         }
 
         .hero-content {
@@ -243,7 +261,9 @@
     <!-- ── HERO ── -->
     <section class="hero">
         <div class="hero-video">
-            <iframe src="https://www.youtube.com/embed/23d5KSWjDlY?autoplay=1&mute=1&loop=1&playlist=23d5KSWjDlY&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <video autoplay muted loop playsinline>
+                <source src="hero-bg.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -251,6 +271,11 @@
             <a href="https://cal.com/sean-puente-kfnbtg/free-invisalign-evaluation" class="btn btn-hero" target="_blank">
                 Book Now
             </a>
+        </div>
+        <div class="hero-curve">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="#FFFFFF"/>
+            </svg>
         </div>
     </section>
 
