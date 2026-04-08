@@ -139,8 +139,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 30px;
-    height: 90px;
+    padding: 24px 36px;
+    height: 100px;
 }
 
 .nav-logo {
@@ -153,7 +153,7 @@ body {
 
 .nav-logo-img {
     display: block;
-    height: 58px;
+    height: 66px;
     width: auto;
 }
 
@@ -190,11 +190,11 @@ body {
     justify-content: center;
     gap: 8px;
     padding: 0 24px;
-    height: 52px;
+    height: 54px;
     border-radius: var(--radius-btn);
     font-family: var(--font-body);
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     border: none;
@@ -540,6 +540,115 @@ body {
     height: 8px;
     border-radius: 50%;
     background: var(--brand-accent);
+}
+
+/* ── TREATMENT DETAIL PAGE ── */
+.treatment-detail {
+    padding: 60px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.treatment-detail > p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--brand-text);
+    margin-bottom: 20px;
+}
+
+.treatment-detail h2 {
+    font-family: var(--font-body);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin: 40px 0 20px;
+}
+
+/* FAQ Accordion */
+.faq-list {
+    margin: 30px 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--brand-border);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-dark);
+    text-align: left;
+}
+
+.faq-question:hover {
+    color: var(--brand-primary);
+}
+
+.faq-icon {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--brand-primary);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 0 20px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--brand-muted);
+}
+
+.faq-item.open .faq-answer {
+    display: block;
+}
+
+/* Treatment enquiry box */
+.enquiry-box {
+    background: var(--brand-light);
+    border-radius: var(--radius-btn);
+    padding: 40px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.enquiry-box h3 {
+    font-family: var(--font-body);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 12px;
+}
+
+.enquiry-box p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--brand-muted);
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .treatment-detail { padding: 40px 24px; }
+    .enquiry-box { padding: 28px 20px; }
 }
 
 /* ── FEATURED TREATMENT ── */
