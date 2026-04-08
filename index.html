@@ -20,7 +20,7 @@
             background: var(--brand-light);
         }
 
-        /* ── VIDEO BACKGROUND ── */
+        /* ── ROTATING VIDEO BACKGROUND ── */
         .hero-video {
             position: absolute;
             inset: 0;
@@ -37,6 +37,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-video video.active {
+            opacity: 1;
         }
 
         /* #1: Light overlay matching CubeDental (~25-30%) */
@@ -324,8 +330,14 @@
     <!-- ── HERO ── -->
     <section class="hero">
         <div class="hero-video">
-            <video autoplay muted loop playsinline>
-                <source src="hero-bg.mp4" type="video/mp4">
+            <video class="active" muted playsinline>
+                <source src="https://videos.pexels.com/video-files/8746866/8746866-hd_1920_1080_25fps.mp4" type="video/mp4">
+            </video>
+            <video muted playsinline>
+                <source src="https://videos.pexels.com/video-files/8724239/8724239-hd_2048_1080_25fps.mp4" type="video/mp4">
+            </video>
+            <video muted playsinline>
+                <source src="https://videos.pexels.com/video-files/10159566/10159566-hd_2048_1080_25fps.mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay"></div>
@@ -448,6 +460,57 @@
             Book Now
         </a>
     </div>
+
+    <!-- ── VIDEO ROTATION CONTROLLER ── -->
+    <script>
+    (function() {
+        var videos = document.querySelectorAll('.hero-video video');
+        if (!videos.length) return;
+
+        // Clip timing: [startSec, endSec, playbackRate]
+        var clips = [
+            { start: 3, end: 7, speed: 0.7 },   // Family brushing — slowed
+            { start: 1, end: 4, speed: 1.0 },   // Woman laughing — natural
+            { start: 2, end: 6, speed: 0.8 }    // Women on sofa — slightly slowed
+        ];
+
+        var current = 0;
+
+        function playClip(index) {
+            var video = videos[index];
+            var clip = clips[index];
+
+            video.playbackRate = clip.speed;
+            video.currentTime = clip.start;
+            video.classList.add('active');
+            video.play().catch(function(){});
+
+            // Monitor time and cross-fade to next
+            var checkTime = setInterval(function() {
+                if (video.currentTime >= clip.end) {
+                    clearInterval(checkTime);
+                    video.classList.remove('active');
+
+                    // Next clip
+                    current = (current + 1) % videos.length;
+                    setTimeout(function() {
+                        playClip(current);
+                    }, 300);
+                }
+            }, 100);
+        }
+
+        // Start first clip when it's loaded enough
+        videos[0].addEventListener('canplay', function() {
+            playClip(0);
+        }, { once: true });
+
+        // Preload all videos
+        videos.forEach(function(v) {
+            v.load();
+        });
+    })();
+    </script>
 
 </body>
 </html>
